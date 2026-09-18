@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bibliothèque de quartier</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================= -->
+  <!-- EN-TÊTE -->
+  <!-- ============================= -->
+
+  <header>
+
+    <h1>Bibliothèque de quartier</h1>
+
+    <nav>
+      <button data-section="dashboard">Dashboard</button>
+      <button data-section="books">Livres</button>
+      <button data-section="members">Adhérents</button>
+      <button data-section="loans">Emprunts</button>
+    </nav>
+
+  </header>
+
+
+  <!-- ============================= -->
+  <!-- CONTENU PRINCIPAL -->
+  <!-- ============================= -->
+
+  <main>
+
+    <!-- ============================= -->
+    <!-- DASHBOARD -->
+    <!-- ============================= -->
+
+    <section id="dashboard" class="section active">
+
+      <h2>Dashboard</h2>
+
+      <div class="dashboard-cards">
+
+        <div class="card">
+          <h3>Total des livres</h3>
+          <p id="totalLivres">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Total des adhérents</h3>
+          <p id="totalAdherents">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Emprunts en cours</h3>
+          <p id="empruntsEnCours">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Emprunts en retard</h3>
+          <p id="empruntsEnRetard">0</p>
+        </div>
+
+      </div>
+
+
+      <div class="dashboard-info">
+
+        <div class="card">
+          <h3>Livre le plus emprunté</h3>
+          <p id="livreLePlusEmprunte">Aucun</p>
+        </div>
+
+        <div class="card">
+          <h3>Adhérent le plus actif</h3>
+          <p id="adherentLePlusActif">Aucun</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- LIVRES -->
+    <!-- ============================= -->
+
+    <section id="books" class="section">
+
+      <h2>Livres</h2>
+
+
+      <!-- Recherche -->
+
+      <form id="searchBookForm">
+
+        <input
+          type="text"
+          id="searchBookInput"
+          placeholder="Rechercher un livre ou un auteur"
+        >
+
+        <button type="submit">
+          Rechercher
+        </button>
+
+      </form>
+
+
+      <!-- Ajouter un livre -->
+
+      <h3>Ajouter un livre</h3>
+
+      <form id="bookForm">
+
+        <input
+          type="text"
+          id="bookTitle"
+          placeholder="Titre du livre"
+          required
+        >
+
+        <select id="bookAuthor" required>
+
+          <option value="">
+            Choisir un auteur
+          </option>
+
+        </select>
+
+        <input
+          type="number"
+          id="bookYear"
+          placeholder="Année"
+          required
+        >
+
+        <button type="submit">
+          Ajouter
+        </button>
+
+      </form>
+
+
+      <!-- Liste des livres -->
+
+      <h3>Liste des livres</h3>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Année</th>
+            <th>Disponibilité</th>
+            <th>Actions</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="booksTableBody"></tbody>
+
+      </table>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- ADHÉRENTS -->
+    <!-- ============================= -->
+
+    <section id="members" class="section">
+
+      <h2>Adhérents</h2>
+
+
+      <!-- Ajouter un adhérent -->
+
+      <h3>Ajouter un adhérent</h3>
+
+      <form id="memberForm">
+
+        <input
+          type="text"
+          id="memberLastName"
+          placeholder="Nom"
+          required
+        >
+
+        <input
+          type="text"
+          id="memberFirstName"
+          placeholder="Prénom"
+          required
+        >
+
+        <input
+          type="text"
+          id="memberContact"
+          placeholder="Contact"
+          required
+        >
+
+        <button type="submit">
+          Ajouter
+        </button>
+
+      </form>
+
+
+      <!-- Liste des adhérents -->
+
+      <h3>Liste des adhérents</h3>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Contact</th>
+            <th>Actions</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="membersTableBody"></tbody>
+
+      </table>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- EMPRUNTS -->
+    <!-- ============================= -->
+
+    <section id="loans" class="section">
+
+      <h2>Emprunts</h2>
+
+
+      <!-- Créer un emprunt -->
+
+      <h3>Créer un emprunt</h3>
+
+      <form id="loanForm">
+
+        <select id="loanMember" required>
+
+          <option value="">
+            Choisir un adhérent
+          </option>
+
+        </select>
+
+
+        <select id="loanBook" required>
+
+          <option value="">
+            Choisir un livre
+          </option>
+
+        </select>
+
+
+        <label for="loanDueDate">
+          Date de retour prévue
+        </label>
+
+        <input
+          type="date"
+          id="loanDueDate"
+          required
+        >
+
+
+        <button type="submit">
+          Enregistrer l'emprunt
+        </button>
+
+      </form>
+
+
+      <!-- Emprunts en cours -->
+
+      <h3>Emprunts en cours</h3>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Adhérent</th>
+            <th>Livre</th>
+            <th>Date d'emprunt</th>
+            <th>Retour prévu</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="currentLoansTableBody"></tbody>
+
+      </table>
+
+
+      <!-- Emprunts en retard -->
+
+      <h3>Emprunts en retard</h3>
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Adhérent</th>
+            <th>Livre</th>
+            <th>Date d'emprunt</th>
+            <th>Retour prévu</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="overdueLoansTableBody"></tbody>
+
+      </table>
+
+    </section>
+
+  </main>
+
+
+  <!-- ============================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ============================= -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
